@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Getting Started Extension's Popup</title>
+    <style>
+      body {
+        min-width: 357px;
+        overflow-x: hidden;
+      }
+
+      img {
+        margin: 5px;
+        border: 2px solid black;
+        vertical-align: middle;
+        width: 75px;
+        height: 75px;
+      }
+    </style>
+
+    <script src="popup.js"></script>
+  </head>
+  <body>
+      <p></p>
+      <input type="button" value="自动刷新" id="on" />
+      <input type="button" value="取消刷新"id="off"/>
+      <p>设置刷新间隔时间</p>
+      <input type="text" id="time">
+      <input type="button" value="设置" id="time_set">
+
+      <input type="button" value="停止声音" id="stop"/>
+      <input type="text"   id="money"/>
+      <input type="button" value="设置所借金钱" id="money_set"/>
+<!--
+ <div hidden="true">
+	<audio controls>
+  	<source id="alertSound" src="alert.mp3" type="audio/mpeg">
+  	</audio>
+ </div>
+--> 
+</body>
+</html>
+
