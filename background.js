@@ -1,16 +1,16 @@
-time=7000;
-money=1000;
+time=5000;
+money=0;
 isreload=false;
+audio=document.getElementById('audiotab');
+audio.loop=true;
 function playSound(){
 	console.log("playSound");
-	var audio=document.getElementById("audiotab");
-	console.log(audio.id);
-	audio.play();
+	window.audio.currentTime=0;
+	window.audio.play();
 	}
 function stopSound(){
-	var audio=document.getElementById("audiotab");
-	console.log(audio.id);
-	audio.pause();
+	console.log(window.audio.id);
+	window.audio.pause();
 	}
 function sendAction(theJob,theMoney){
 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
@@ -31,8 +31,12 @@ chrome.runtime.onMessage.addListener(
 	    console.log("no Money");
 	    sendReloadAndTimeout(window.time);
 	}
-  	else if(request.value == true){
+  	else if(request.value == true && window.isreload==true){
+	    window.isreload=false;
 	    playSound();
+	    alert("有钱了！");
+	    console.log('alerted and stop sound');
+	    stopSound();
 	    sendAction("borrowMoney",window.money);
 	}
     }
@@ -50,7 +54,7 @@ chrome.runtime.onMessage.addListener(
 	    console.log(window.time+"-window.time");
 	}
     else if(request.key=="money"){
-	if (parseInt(request.value)>0)
+	if (parseInt(request.value)>=0)
 	    window.money=parseInt(request.value)
 	    console.log(window.money+"-window.money");
 	}
