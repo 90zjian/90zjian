@@ -5,12 +5,11 @@ audio=document.getElementById('audiotab');
 audio.loop=true;
 function playSound(){
 	console.log("playSound");
-	window.audio.currentTime=0;
-	window.audio.play();
+	audio.currentTime=0;
+	audio.play();
 	}
 function stopSound(){
-	console.log(window.audio.id);
-	window.audio.pause();
+	audio.pause();
 	}
 function sendAction(theJob,theMoney){
 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
@@ -58,8 +57,9 @@ chrome.runtime.onMessage.addListener(
 	    window.money=parseInt(request.value)
 	    console.log(window.money+"-window.money");
 	}
-    else if(request.key=="sound" && request.value=="stop" ){
+/*    else if(request.key=="sound" && request.value=="stop" ){
 	stopSound();
 	}
+*/
   sendResponse({result:"success"});
   });
